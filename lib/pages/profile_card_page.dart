@@ -86,6 +86,7 @@ class ProfileCardPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Row(
+                  // Expanded 均分宽度：任何数字长度变化都不会溢出（故意实验后已加回）
                   children: [
                     Expanded(child: _buildStat('128', '作品')),
                     Expanded(child: _buildStat('2431', '粉丝')),
