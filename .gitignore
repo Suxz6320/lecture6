@@ -46,3 +46,7 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# 工作脚本与临时目录（不属于作业交付物）
+.shots/
+.doctmp*/

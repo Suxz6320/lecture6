@@ -13,6 +13,31 @@ class ProfileCardPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('个人名片 · profile_card'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        // 入口菜单：跳转到各自主实践实验页（命名路由）
+        actions: [
+          PopupMenuButton<String>(
+            tooltip: '跳转到实验页',
+            onSelected: (route) => Navigator.pushNamed(context, route),
+            itemBuilder: (context) => const [
+              PopupMenuItem(
+                value: '/alignment',
+                child: Text('自主实践1 · 对齐任务卡'),
+              ),
+              PopupMenuItem(
+                value: '/flex',
+                child: Text('自主实践2 · 弹性分配实验'),
+              ),
+              PopupMenuItem(
+                value: '/stack',
+                child: Text('自主实践3 · Stack 层叠角标'),
+              ),
+              PopupMenuItem(
+                value: '/overflow',
+                child: Text('故意实验 · 溢出存档'),
+              ),
+            ],
+          ),
+        ],
       ),
       // 页面底色用主题派生色，衬托白色卡片
       backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
