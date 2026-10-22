@@ -1,30 +1,24 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
+// profile_card 基础冒烟测试：
+// 验证应用能正常构建，且名片页关键内容（姓名、统计条数字）渲染成功。
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:profile_card/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  testWidgets('profile card renders name & stats', (WidgetTester tester) async {
+    await tester.pumpWidget(const ProfileCardApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // 姓名与签名
+    expect(find.text('李桐'), findsOneWidget);
+    expect(find.text('Flutter 学习中 · 每天进步一点点'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    // 统计条三个数字块
+    expect(find.text('128'), findsOneWidget);
+    expect(find.text('2431'), findsOneWidget);
+    expect(find.text('86'), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // 标签云
+    expect(find.text('Flutter'), findsOneWidget);
+    expect(find.text('Dart'), findsOneWidget);
   });
 }
