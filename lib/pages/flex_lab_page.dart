@@ -62,11 +62,12 @@ class FlexLabPage extends StatelessWidget {
             child: Row(
               children: [
                 SizedBox(width: 60, child: _bar('固定', const Color(0xFF7986CB))),
-                const Text(
-                  '这是一段不允许换行的超长文本它会撑破Row的约束',
+                // 重复 12 次（约 3000px 宽），保证在任何窗口宽度下都撑破约束
+                Text(
+                  '这是一段不允许换行的超长文本它会撑破Row的约束，' * 12,
                   softWrap: false,
                   maxLines: 1,
-                  style: TextStyle(fontSize: 11),
+                  style: const TextStyle(fontSize: 11),
                 ),
                 SizedBox(width: 60, child: _bar('固定', const Color(0xFFFFB74D))),
               ],

@@ -90,13 +90,15 @@ class AlignmentLabPage extends StatelessWidget {
         children: [
           _demoBox(
             SizedBox(
-              height: 84,
+              // 纵向内容 3×40 + 2×6 = 132px，留足空隙让 spaceBetween 有可见间隔
+              height: 180,
               child: Column(
                 mainAxisAlignment: alignment,
                 crossAxisAlignment: crossAxisAlignment,
                 children: _blocks(),
               ),
             ),
+            height: 192,
           ),
           const SizedBox(height: 8),
           _paramLabel(label),
@@ -121,9 +123,9 @@ class AlignmentLabPage extends StatelessWidget {
         ],
       );
 
-  Widget _demoBox(Widget child) => Container(
+  Widget _demoBox(Widget child, {double height = 96}) => Container(
         width: double.infinity,
-        height: 96,
+        height: height,
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black26),
           borderRadius: BorderRadius.circular(8),

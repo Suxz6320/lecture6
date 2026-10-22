@@ -27,11 +27,13 @@ class OverflowDemoPage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: const [
-                  _Stat(value: '128', label: '作品'),
-                  _Stat(value: '2431', label: '粉丝'),
-                  _Stat(value: '86868', label: '关注'),
+                  // 每个 SizedBox 固定 120 宽，相当于"去掉 Expanded 后各按
+                  // 内容占宽"的强化版：120×3=360 > 300，必然溢出 60px
+                  SizedBox(width: 120, child: _Stat(value: '128', label: '作品')),
+                  SizedBox(width: 120, child: _Stat(value: '2431', label: '粉丝')),
+                  SizedBox(width: 120, child: _Stat(value: '86', label: '关注')),
                 ],
               ),
             ),
@@ -40,8 +42,8 @@ class OverflowDemoPage extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: Text(
-                '上方的统计条宽 300，三个数字块不带 Expanded、各按内容占宽，'
-                '总宽超过约束 → 右侧"关注"被挤出，出现黄黑溢出条纹。\n\n'
+                '上方的统计条宽 300，三个数字块不带 Expanded，各被固定 120 宽'
+                '（120×3=360，超过约束）→ 右侧"关注"被挤出，出现黄黑溢出条纹。\n\n'
                 '修复方式：给三个子项包上 Expanded 让其均分空间，'
                 '见名片页最终版（主页 /）。此页专门保留溢出现象作课堂证据。',
                 style: TextStyle(fontSize: 13, color: Colors.black54),
